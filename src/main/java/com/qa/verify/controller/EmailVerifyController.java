@@ -26,7 +26,6 @@ public class EmailVerifyController {
 	@PostMapping("/createEmployee")
 	public String verify(@RequestBody Employee employee) {
 		if (service.endWithVerify(employee) != null) {
-			restTemplate.postForEntity(Constants.SENDEMAIL, employee, String.class).getBody();
 			return restTemplate.postForEntity(Constants.CREATEEMPLOYEE, employee, String.class).getBody();
 		}
 		return "Invalid email.";
