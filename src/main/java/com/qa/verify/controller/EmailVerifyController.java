@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.qa.verify.Constants;
 import com.qa.verify.object.Employee;
 import com.qa.verify.service.EndWithVerifyService;
 
@@ -26,7 +27,7 @@ public class EmailVerifyController {
 	public String verify(@RequestBody Employee employee) {
 		if (service.endWithVerify(employee) != null) {
 			//send email that address is good
-			return restTemplate.postForEntity("http://localhost:8082/createEmployee", employee, String.class).getBody();
+			return restTemplate.postForEntity(Constants.CREATEEMPLOYEE, employee, String.class).getBody();
 		}
 		//send email that address is bad
 		return "Invalid email.";
